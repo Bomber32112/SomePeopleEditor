@@ -1,0 +1,56 @@
+﻿<Window x:Class="SomePeopleEditor.Models.Edit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SomePeopleEditor.Models"
+        mc:Ignorable="d"
+        Title="Edit" Height="450" Width="800"
+        xmlns:models="clr-namespace:SomePeopleEditor.Models">
+    <Window.Resources>
+        <Style x:Name="ListViewStyle" TargetType="ListView">
+            
+        </Style>
+        <DataTemplate DataType="{x:Type models:Student}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Label Content="Name"/>
+                    <Label Content="Surname"/>
+                    <Label Content="Number of group"/>
+                    <Label Content="Birthday"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBox Text="{Binding Name}" Height="27"/>
+                    <TextBox Text="{Binding Surname}" Height="27"/>
+                    <TextBox Text="{Binding GroupNumber}" Height="27"/>
+                    <TextBox Text="{Binding Birthday, StringFormat=dd.MM.yyyy}" Height="27"/>
+                    <DatePicker HorizontalAlignment="Right" Width="30" Height="25" SelectedDate="{Binding Birthday}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type models:Group}">
+            <StackPanel Grid.Column="0">
+                <Label Content="Number of group"/>
+                <TextBox Text="{Binding Number}" Height="27"/>
+                <ListView x:Name="ListOfStudents">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Surname}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding GroupNumber}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Birthday, StringFormat=dd.mm.yyyy}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </DataTemplate>
+        
+    </Window.Resources>
+    <Grid>
+        
+    </Grid>
+</Window>

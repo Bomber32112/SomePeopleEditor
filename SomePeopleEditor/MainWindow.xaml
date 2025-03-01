@@ -5,11 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SomePeopleEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:models="clr-namespace:SomePeopleEditor.Models">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type models:Student}">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}"/>
+                <TextBlock Text="{Binding Surname}"/>
+                <TextBlock Text="{Binding Birthday, StringFormat=Год рождения: dd.MM.yyyy}"/>
+                <TextBlock Text="{Binding GroupNumber, StringFormat=Номер группы: {0}}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type models:Group}">
+            <StackPanel>
+                <TextBlock Text="{Binding Number, StringFormat=Номер группы: {0}}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type models:Curator}">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}"/>
+                <TextBlock Text="{Binding Surname}"/>
+                <TextBlock Text="{Binding GroupNumber, StringFormat=Номер группы {0}}"/>
+                <TextBlock Text="{Binding Subject}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        <TabControl>
-            <TabItem/>
-            <TabItem/>  
-        </TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Content="Students" Click="GetStudentList"/>
+            <Button Content="Groups" Click="GetGroupList"/>
+            <Button Content="Curators" Click="GetCuratorList"/>
+            <Button Content="Edit" Click="EditItem"/>
+        </StackPanel>
+        <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding Item}" Grid.Row="1">
+
+        </ListBox>
     </Grid>
 </Window>
