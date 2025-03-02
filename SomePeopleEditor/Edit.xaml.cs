@@ -22,9 +22,16 @@ namespace SomePeopleEditor.Models
         public Edit(object item)
         {
             InitializeComponent();
-            
+            var ListViewStyle = FindResource("ListViewStyle");
+
             DataContext = DataBase.DB;
             Content = item;
+        }
+
+        private void RemoveStudent(object sender, RoutedEventArgs e)
+        {
+            int index = ((Group)DataBase.DB.Item).Students.IndexOf(((Student)((Button)sender).Tag));
+            ((Group)DataBase.DB.Item).Students.RemoveAt(index);
         }
     }
 }

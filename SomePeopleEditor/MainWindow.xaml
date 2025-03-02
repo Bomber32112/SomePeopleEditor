@@ -40,6 +40,7 @@
             <Button Content="Groups" Click="GetGroupList"/>
             <Button Content="Curators" Click="GetCuratorList"/>
             <Button Content="Edit" Click="EditItem"/>
+            <Button Content="Add" Click="AddItem"/>
         </StackPanel>
         <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding Item}" Grid.Row="1">
 

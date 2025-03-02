@@ -3,14 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SomePeopleEditor.Models"
+        xmlns:local="clr-namespace:SomePeopleEditor"
         mc:Ignorable="d"
         Title="Edit" Height="450" Width="800"
-        xmlns:models="clr-namespace:SomePeopleEditor.Models">
+        xmlns:models="clr-namespace:SomePeopleEditor.Models"
+        xmlns:Everything="clr-namespace:SomePeopleEditor">
     <Window.Resources>
-        <Style x:Name="ListViewStyle" TargetType="ListView">
+        <Style x:Key="ListViewStyle" TargetType="ListView">
             
         </Style>
+        <local:DataBase x:Key="DataBase"/>
         <DataTemplate DataType="{x:Type models:Student}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -36,7 +38,25 @@
             <StackPanel Grid.Column="0">
                 <Label Content="Number of group"/>
                 <TextBox Text="{Binding Number}" Height="27"/>
-                <ListView x:Name="ListOfStudents">
+                <ListView ItemsSource="{Binding Students}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Surname}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding GroupNumber}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Birthday, StringFormat=dd.mm.yyyy}"/>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+
+                                    <DataTemplate>
+                                        <Button Tag="{Binding}" Click="RemoveStudent"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <ListView ItemsSource="{Binding DB.AllStudents, Source={StaticResource DataBase}}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Name}"/>
@@ -51,6 +71,6 @@
         
     </Window.Resources>
     <Grid>
-        
+        <Button Width="80" Height="30" Margin="690,383,30,21"/>
     </Grid>
 </Window>
