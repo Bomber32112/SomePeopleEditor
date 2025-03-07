@@ -51,5 +51,10 @@ namespace SomePeopleEditor.Models
                 DataBase.DB.Curators.Add((Curator)DataBase.DB.Item);
             this.Close();
         }
+        private void AddStudent(object sender, RoutedEventArgs e)
+        {
+            if (!((Group)DataBase.DB.Item).Students.Contains((Student)((Button)sender).Tag))
+            ((Group)DataBase.DB.Item).Students.Add((Student)((Button)sender).Tag);
+        }
     }
 }
