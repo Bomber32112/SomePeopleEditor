@@ -10,6 +10,7 @@ namespace SomePeopleEditor.Models
     public class Group
     {
         public int Number { get; set; }
+        public Curator CuratorOfThisGroup { get; set; }
         public ObservableCollection<Student> Students { get; set; } = new();
     }
 }

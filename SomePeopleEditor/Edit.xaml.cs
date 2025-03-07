@@ -23,15 +23,33 @@ namespace SomePeopleEditor.Models
         {
             InitializeComponent();
             var ListViewStyle = FindResource("ListViewStyle");
-
-            DataContext = DataBase.DB;
+            
             Content = item;
         }
 
         private void RemoveStudent(object sender, RoutedEventArgs e)
         {
-            int index = ((Group)DataBase.DB.Item).Students.IndexOf(((Student)((Button)sender).Tag));
+            int index = ((Group)DataBase.DB.Item).Students.IndexOf((Student)((Button)sender).Tag);
             ((Group)DataBase.DB.Item).Students.RemoveAt(index);
+        }
+
+        private void SaveGroup(object sender, RoutedEventArgs e)
+        {
+            if (!DataBase.DB.Groups.Contains((Group)DataBase.DB.Item))
+                DataBase.DB.Groups.Add((Group)DataBase.DB.Item);
+            this.Close();
+        }
+        private void SaveStudent(object sender, RoutedEventArgs e)
+        {
+            if (!DataBase.DB.AllStudents.Contains((Student)DataBase.DB.Item))
+                DataBase.DB.AllStudents.Add((Student)DataBase.DB.Item);
+            this.Close();
+        }
+        private void SaveCurator(object sender, RoutedEventArgs e)
+        {
+            if (!DataBase.DB.Curators.Contains((Curator)DataBase.DB.Item))
+                DataBase.DB.Curators.Add((Curator)DataBase.DB.Item);
+            this.Close();
         }
     }
 }

@@ -29,8 +29,9 @@ namespace SomePeopleEditor
             {
                 TestStudent.Add(item);
             };
-            DataBase.DB.Groups.Add(new Group { Number = 1234, Students = TestStudent});
             DataBase.DB.Curators.Add(new Curator {Name = "Petr", Surname = "Petrovych", GroupNumber = 1234, Subject = "Math" });
+            DataBase.DB.Curators.Add(new Curator { Name = "fd", GroupNumber = 656, Subject = "efsa", Surname = "efw" });
+            DataBase.DB.Groups.Add(new Group { Number = 1234, Students = TestStudent, CuratorOfThisGroup = DataBase.DB.Curators.First()});
             DataContext = DataBase.DB;
         }
 
@@ -70,7 +71,7 @@ namespace SomePeopleEditor
             if (DataBase.DB.Items != null && target != null)
             {
                 DataBase.DB.Item = Activator.CreateInstance(target);
-                new Edit(DataBase.DB.Item).Show();
+                new Edit(DataBase.DB.Item).ShowDialog();
             }
         }
     }

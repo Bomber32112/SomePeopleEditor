@@ -19,6 +19,12 @@
         <DataTemplate DataType="{x:Type models:Group}">
             <StackPanel>
                 <TextBlock Text="{Binding Number, StringFormat=Номер группы: {0}}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Curator:"/>
+                    <TextBlock Text="{Binding CuratorOfThisGroup.Name}" Margin="10 0 0 0"/>
+                    <TextBlock Text="{Binding CuratorOfThisGroup.Surname}" Margin="10 0 0 0"/>
+                    <TextBlock Text="{Binding CuratorOfThisGroup.Subject}" Margin="10 0 0 0"/>
+                </StackPanel>
             </StackPanel>
         </DataTemplate>
         <DataTemplate DataType="{x:Type models:Curator}">
