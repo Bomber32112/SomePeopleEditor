@@ -35,8 +35,14 @@ namespace SomePeopleEditor.Models
 
         private void SaveGroup(object sender, RoutedEventArgs e)
         {
-            if (!DataBase.DB.Groups.Contains((Group)DataBase.DB.Item))
-                DataBase.DB.Groups.Add((Group)DataBase.DB.Item);
+            Group thisGroup = (Group)DataBase.DB.Item;
+            if (thisGroup.CuratorOfThisGroup == null || thisGroup.Students == null || thisGroup.Number == 0) 
+            {
+                MessageBox.Show("Wrong value");
+                return;
+            }
+            if (!DataBase.DB.Groups.Contains(thisGroup))
+                DataBase.DB.Groups.Add(thisGroup);
             this.Close();
         }
         private void SaveStudent(object sender, RoutedEventArgs e)
